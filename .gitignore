@@ -1,3 +1,6 @@
+dist/
+src/types
+
 # Logs
 logs
 *.log

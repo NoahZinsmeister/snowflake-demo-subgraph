@@ -8,7 +8,7 @@
     "codegen": "graph codegen --debug --output-dir src/types/",
     "build": "graph build --debug",
     "deploy": "graph deploy NoahZinsmeister/SnowMo --debug --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
-    "deploy-local": "graph deploy NoahZinsmeister/SnowMo --debug --ipfs http://localhost:5001 --node http://127.0.0.1:8020"
+    "deploy-local": "graph deploy --subgraph-name NoahZinsmeister/SnowMo --debug --ipfs http://localhost:5001 --node http://127.0.0.1:8020"
   },
   "devDependencies": {
     "@graphprotocol/graph-cli": "^0.7.1",
@@ -16,9 +16,6 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "babel-register": "^6.26.0",
-    "truffle": "^5.0.4",
-    "truffle-contract": "^4.0.5",
-    "truffle-hdwallet-provider": "^1.0.4"
+    "babel-register": "^6.26.0"
   }
 }

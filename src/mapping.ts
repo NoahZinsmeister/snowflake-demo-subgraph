@@ -1,22 +1,31 @@
-import { NewGravatar, UpdatedGravatar } from './types/Gravity/Gravity'
-import { Gravatar } from './types/schema'
+import { SnowMoSignup, TransferFrom, WithdrawFromVia } from './types/SnowMoResolver/SnowMoResolver'
+import { SnowMoEntity, SnowMoTransfer, SnowMoWithdrawFromVia } from './types/schema'
 
-export function handleNewGravatar(event: NewGravatar): void {
-  let gravatar = new Gravatar(event.params.id.toHex())
-  gravatar.owner = event.params.owner
-  gravatar.displayName = event.params.displayName
-  gravatar.imageUrl = event.params.imageUrl
-  gravatar.save()
+export function handleSnowMoSignup(event: SnowMoSignup): void {
+  let entity = new SnowMoEntity(event.params.ein.toHex())
+  entity.ein = event.params.ein
+  entity.save()
 }
 
-export function handleUpdatedGravatar(event: UpdatedGravatar): void {
-  let id = event.params.id.toHex()
-  let gravatar = Gravatar.load(id)
-  if (gravatar == null) {
-    gravatar = new Gravatar(id)
+export function handleTransferFrom(event: TransferFrom): void {
+  let entity = new SnowMoTransfer(event.transaction.hash.toHex())
+  entity.einFrom = event.params.einFrom
+  entity.einTo = event.params.einTo
+  entity.amount = event.params.amount
+  if (event.params.message !== '') {
+    entity.message = event.params.message
   }
-  gravatar.owner = event.params.owner
-  gravatar.displayName = event.params.displayName
-  gravatar.imageUrl = event.params.imageUrl
-  gravatar.save()
+  entity.save()
+}
+
+export function handleWithdrawFromVia(event: WithdrawFromVia): void {
+  let entity = new SnowMoWithdrawFromVia(event.transaction.hash.toHex())
+  entity.einFrom = event.params.einFrom
+  entity.to = event.params.to
+  entity.via = event.params.via
+  entity.amount = event.params.amount
+  if (event.params.message !== '') {
+    entity.message = event.params.message
+  }
+  entity.save()
 }

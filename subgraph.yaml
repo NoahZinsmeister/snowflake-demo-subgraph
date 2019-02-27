@@ -1,27 +1,31 @@
 specVersion: 0.0.1
-description: Gravatar for Ethereum
-repository: https://github.com/rodventures/gravity-subgraph
+description: SnowMo
+repository: https://github.com/NoahZinsmeister/snowflake-demo-subgraph
 schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: Gravity
-    network: mainnet
+    name: SnowMoResolver
+    network: rinkeby
     source:
-      address: '0x2E645469f354BB4F5c8a05B3b30A929361cf77eC'
-      abi: Gravity
+      address: '0x9e13dE96cF2E046F79979aE80F5C03247FcD67FA'
+      abi: SnowMoResolver
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.1
       language: wasm/assemblyscript
       entities:
-        - Gravatar
+        - SnowMoEntity
+        - SnowMoTransfer
+        - SnowMoWithdrawFromVia
       abis:
-        - name: Gravity
-          file: ./abis/Gravity.json
+        - name: SnowMoResolver
+          file: ./abis/SnowMoResolver.json
       eventHandlers:
-        - event: NewGravatar(uint256,address,string,string)
-          handler: handleNewGravatar
-        - event: UpdatedGravatar(uint256,address,string,string)
-          handler: handleUpdatedGravatar
+        - event: SnowMoSignup(uint256)
+          handler: handleSnowMoSignup
+        - event: TransferFrom(uint256,uint256,uint256,string)
+          handler: handleTransferFrom
+        - event: WithdrawFromVia(uint256,address,address,uint256,string,bytes)
+          handler: handleWithdrawFromVia
       file: ./src/mapping.ts
