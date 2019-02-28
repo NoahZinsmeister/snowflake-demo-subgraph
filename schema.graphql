@@ -1,21 +1,37 @@
 type SnowMoEntity @entity {
-  id: ID!      # EIN
+  # EIN
+  id: ID!
   ein: BigInt!
+
+  transactionHash: Bytes!
+  blockNumber: BigInt!
+  timestamp: BigInt!
 }
 
 type SnowMoTransfer @entity {
-  id: ID!          # transaction hash
+  # transaction hash
+  id: ID!
   einFrom: BigInt!
   einTo: BigInt!
   amount: BigInt!
   message: String
+
+  transactionHash: Bytes!
+  blockNumber: BigInt!
+  timestamp: BigInt!
 }
 
 type SnowMoWithdrawFromVia @entity {
-  id: ID!          # transaction hash
+  # transaction hash
+  id: ID!
   einFrom: BigInt!
   to: Bytes!
   via: Bytes!
   amount: BigInt!
   message: String
+
+  transactionHash: Bytes!
+  blockNumber: BigInt!
+  timestamp: BigInt!
 }
+
