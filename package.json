@@ -5,7 +5,9 @@
   "scripts": {
     "codegen": "graph codegen --debug --output-dir src/types/",
     "build": "graph build --debug",
-    "deploy": "graph deploy noahzinsmeister/snowmo --debug --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/"
+    "deploy": "graph deploy noahzinsmeister/snowmo --debug --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
+    "create-local": "graph create noahzinsmeister/snowmo --node http://127.0.0.1:8020",
+    "deploy-local": "graph deploy noahzinsmeister/snowmo --debug --ipfs http://localhost:5001 --node http://127.0.0.1:8020"
   },
   "devDependencies": {
     "@graphprotocol/graph-cli": "^0.7.0",
